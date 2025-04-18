@@ -68,20 +68,20 @@ def main():
         model.to(device)
         results[model_name]['model'] = model
    
-    # for model_name, model in models.items():
-    #     print(f"\nTraining {model_name} model...")
-    #     trained_model, train_losses, valid_losses = train_model(
-    #         model, train_loader, valid_loader, device,
-    #         epochs=30, lr=5e-4, early_stopping_patience=3,
-    #         model_name=model_name
-    #     )
+    for model_name, model in models.items():
+        print(f"\nTraining {model_name} model...")
+        trained_model, train_losses, valid_losses = train_model(
+            model, train_loader, valid_loader, device,
+            epochs=30, lr=5e-4, early_stopping_patience=3,
+            model_name=model_name
+        )
     #     # save the model
-    #     torch.save(trained_model.state_dict(), f"{model_name}.pth")
-    #     test_perplexity = calculate_perplexity(trained_model, test_loader, device)
-    #     print(f"{model_name} Test Perplexity: {test_perplexity:.2f}")
-    #     plot_loss_curves(train_losses, valid_losses, model_name)
-    #     results[model_name]['model'] = trained_model
-    #     results[model_name]['perplexity'] = test_perplexity
+        torch.save(trained_model.state_dict(), f"{model_name}.pth")
+        test_perplexity = calculate_perplexity(trained_model, test_loader, device)
+        print(f"{model_name} Test Perplexity: {test_perplexity:.2f}")
+        plot_loss_curves(train_losses, valid_losses, model_name)
+        results[model_name]['model'] = trained_model
+        results[model_name]['perplexity'] = test_perplexity
  
     # Text Generation and BLEU evaluation.
     prompt_text = "and the youth dressed himself"
@@ -99,9 +99,9 @@ def main():
         print(f"{model_name} BLEU Score: {bleu:.4f}")
  
     # Print summary of evaluation.
-    # print("\nSummary of model evaluation:")
-    # for model_name, metrics in results.items():
-    #     print(f"{model_name}: Perplexity = {metrics['perplexity']:.2f}, BLEU Score = {metrics['BLEU']:.4f}")
+    print("\nSummary of model evaluation:")
+    for model_name, metrics in results.items():
+        print(f"{model_name}: Perplexity = {metrics['perplexity']:.2f}, BLEU Score = {metrics['BLEU']:.4f}")
  
 if __name__ == '__main__':
     start_time = time.time()
