@@ -1,0 +1,7 @@
+Trained SentencePiece model. Files generated: spm_model.model and spm_model.vocab
+Loaded 3502879 tokens from data/train.jsonl
+Loaded 880833 tokens from data/test.jsonl
+Using device: cuda
+
+Training RNN model...
+Starting Epoch 1/30...
